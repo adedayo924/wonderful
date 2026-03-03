@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Cart - Wonderful Auto & Tech</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <a href="../index.html" class="logo">
+          <i class="fas fa-laptop"></i>
+          <span>Wonderful Auto & Tech</span>
+        </a>
+        <nav class="nav" id="navMenu">
+          <a href="../index.html" class="nav-link">Home</a>
+          <a href="products.html" class="nav-link">Products</a>
+          <a href="cart.html" class="nav-link active">Cart <span id="cartCount" class="cart-badge">0</span></a>
+          <div id="authLinks">
+            <a href="login.html" class="nav-link">Sign In</a>
+            <a href="register.html" class="nav-link btn-primary">Sign Up</a>
+          </div>
+          <div id="userMenu" class="user-menu" style="display: none;">
+            <a href="#" class="nav-link user-toggle" id="userToggle">
+              <i class="fas fa-user-circle"></i> <span id="userName">User</span>
+            </a>
+            <div class="dropdown-menu" id="dropdownMenu">
+              <a href="account.html"><i class="fas fa-user"></i> My Account</a>
+              <a href="orders.html"><i class="fas fa-box"></i> My Orders</a>
+              <a href="#" id="adminLink" style="display: none;"><i class="fas fa-cog"></i> Admin Panel</a>
+              <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Sign Out</a>
+            </div>
+          </div>
+        </nav>
+        <button class="menu-toggle" id="menuToggle">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="cart-page">
+    <div class="container">
+      <div class="page-header">
+        <h1>Shopping Cart</h1>
+        <div class="breadcrumb">
+          <a href="../index.html">Home</a> / Cart
+        </div>
+      </div>
+
+      <div class="cart-layout" id="cartContent">
+        <div class="cart-items" id="cartItems">
+          <div class="loading">Loading cart...</div>
+        </div>
+        <div class="cart-summary" id="cartSummary">
+          <div class="summary-card">
+            <h3>Order Summary</h3>
+            <div class="summary-row">
+              <span>Subtotal</span>
+              <span id="subtotal">₦0</span>
+            </div>
+            <div class="summary-row">
+              <span>Delivery</span>
+              <span>Calculated at checkout</span>
+            </div>
+            <div class="summary-row total">
+              <span>Total</span>
+              <span id="cartTotal">₦0</span>
+            </div>
+            <a href="checkout.html" class="btn btn-primary btn-block" id="checkoutBtn">
+              Proceed to Checkout
+            </a>
+            <a href="products.html" class="btn btn-outline btn-block">
+              Continue Shopping
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="empty-cart" id="emptyCart" style="display: none;">
+        <i class="fas fa-shopping-cart"></i>
+        <h2>Your cart is empty</h2>
+        <p>Looks like you haven't added any items to your cart yet.</p>
+        <a href="products.html" class="btn btn-primary">Start Shopping</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>Wonderful Auto & Tech</h4>
+          <p>Your trusted source for laptops, gadgets, and accessories in Nigeria.</p>
+        </div>
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <a href="products.html">All Products</a>
+          <a href="cart.html">Shopping Cart</a>
+          <a href="account.html">My Account</a>
+        </div>
+        <div class="footer-section">
+          <h4>Contact</h4>
+          <p><i class="fas fa-phone"></i> +234 XXX XXX XXXX</p>
+          <p><i class="fas fa-envelope"></i> info@wonderfulautotech.com</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Wonderful Auto & Tech. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/config.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/cart.js"></script>
+  <script src="../js/app.js"></script>
+</body>
+</html>

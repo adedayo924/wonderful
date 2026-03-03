@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout - Wonderful Auto & Tech</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <a href="../index.html" class="logo">
+          <i class="fas fa-laptop"></i>
+          <span>Wonderful Auto & Tech</span>
+        </a>
+        <nav class="nav" id="navMenu">
+          <a href="../index.html" class="nav-link">Home</a>
+          <a href="products.html" class="nav-link">Products</a>
+          <a href="cart.html" class="nav-link">Cart <span id="cartCount" class="cart-badge">0</span></a>
+          <div id="authLinks">
+            <a href="login.html" class="nav-link">Sign In</a>
+            <a href="register.html" class="nav-link btn-primary">Sign Up</a>
+          </div>
+          <div id="userMenu" class="user-menu" style="display: none;">
+            <a href="#" class="nav-link user-toggle" id="userToggle">
+              <i class="fas fa-user-circle"></i> <span id="userName">User</span>
+            </a>
+            <div class="dropdown-menu" id="dropdownMenu">
+              <a href="account.html"><i class="fas fa-user"></i> My Account</a>
+              <a href="orders.html"><i class="fas fa-box"></i> My Orders</a>
+              <a href="#" id="adminLink" style="display: none;"><i class="fas fa-cog"></i> Admin Panel</a>
+              <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Sign Out</a>
+            </div>
+          </div>
+        </nav>
+        <button class="menu-toggle" id="menuToggle">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="checkout-page">
+    <div class="container">
+      <div class="page-header">
+        <h1>Checkout</h1>
+        <div class="breadcrumb">
+          <a href="../index.html">Home</a> / <a href="cart.html">Cart</a> / Checkout
+        </div>
+      </div>
+
+      <div class="alert alert-info" id="paymentStatus" style="display: none;"></div>
+
+      <div class="checkout-layout">
+        <div class="checkout-form-section">
+          <form id="checkoutForm">
+            <div class="form-section">
+              <h3><i class="fas fa-user"></i> Customer Information</h3>
+              <div class="form-group">
+                <label for="customerName">Full Name *</label>
+                <input type="text" id="customerName" name="customerName" required>
+              </div>
+              <div class="form-group">
+                <label for="customerPhone">Phone Number *</label>
+                <input type="tel" id="customerPhone" name="customerPhone" required placeholder="+234XXXXXXXXXX">
+              </div>
+              <div class="form-group">
+                <label for="customerEmail">Email Address</label>
+                <input type="email" id="customerEmail" name="customerEmail" readonly>
+              </div>
+            </div>
+
+            <div class="form-section">
+              <h3><i class="fas fa-map-marker-alt"></i> Shipping Address</h3>
+              <div class="form-group">
+                <label for="customerAddress">Delivery Address *</label>
+                <textarea id="customerAddress" name="customerAddress" rows="3" required placeholder="Enter your full delivery address"></textarea>
+              </div>
+            </div>
+
+            <div class="form-section">
+              <h3><i class="fas fa-credit-card"></i> Payment</h3>
+              <div class="payment-info">
+                <div class="opay-badge">
+                  <i class="fas fa-lock"></i>
+                  <span>Secure payment via OPay</span>
+                </div>
+                <p class="payment-note">You will be redirected to OPay to complete your payment securely.</p>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block" id="payBtn">
+              <i class="fas fa-shopping-bag"></i> Pay ₦<span id="payAmount">0</span>
+            </button>
+          </form>
+        </div>
+
+        <div class="checkout-summary">
+          <div class="summary-card">
+            <h3>Order Review</h3>
+            <div class="order-items" id="orderItems">
+              <div class="loading">Loading...</div>
+            </div>
+            <div class="summary-row">
+              <span>Subtotal</span>
+              <span id="subtotal">₦0</span>
+            </div>
+            <div class="summary-row">
+              <span>Delivery</span>
+              <span>To be calculated</span>
+            </div>
+            <div class="summary-row total">
+              <span>Total</span>
+              <span id="total">₦0</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>Wonderful Auto & Tech</h4>
+          <p>Your trusted source for laptops, gadgets, and accessories in Nigeria.</p>
+        </div>
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <a href="products.html">All Products</a>
+          <a href="cart.html">Shopping Cart</a>
+          <a href="account.html">My Account</a>
+        </div>
+        <div class="footer-section">
+          <h4>Contact</h4>
+          <p><i class="fas fa-phone"></i> +234 XXX XXX XXXX</p>
+          <p><i class="fas fa-envelope"></i> info@wonderfulautotech.com</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Wonderful Auto & Tech. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/config.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/cart.js"></script>
+  <script src="../js/checkout.js"></script>
+  <script src="../js/app.js"></script>
+</body>
+</html>

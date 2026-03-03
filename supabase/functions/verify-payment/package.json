@@ -1,0 +1,13 @@
+{
+  "name": "verify-payment",
+  "version": "1.0.0",
+  "description": "Verifies OPay payment callback",
+  "main": "index.ts",
+  "scripts": {
+    "dev": "supabase functions serve verify-payment",
+    "deploy": "supabase functions deploy verify-payment"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.39.0"
+  }
+}

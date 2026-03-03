@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Details - Wonderful Auto & Tech</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <a href="../index.html" class="logo">
+          <i class="fas fa-laptop"></i>
+          <span>Wonderful Auto & Tech</span>
+        </a>
+        <nav class="nav" id="navMenu">
+          <a href="../index.html" class="nav-link">Home</a>
+          <a href="products.html" class="nav-link active">Products</a>
+          <a href="cart.html" class="nav-link">Cart <span id="cartCount" class="cart-badge">0</span></a>
+          <div id="authLinks">
+            <a href="login.html" class="nav-link">Sign In</a>
+            <a href="register.html" class="nav-link btn-primary">Sign Up</a>
+          </div>
+          <div id="userMenu" class="user-menu" style="display: none;">
+            <a href="#" class="nav-link user-toggle" id="userToggle">
+              <i class="fas fa-user-circle"></i> <span id="userName">User</span>
+            </a>
+            <div class="dropdown-menu" id="dropdownMenu">
+              <a href="account.html"><i class="fas fa-user"></i> My Account</a>
+              <a href="orders.html"><i class="fas fa-box"></i> My Orders</a>
+              <a href="#" id="adminLink" style="display: none;"><i class="fas fa-cog"></i> Admin Panel</a>
+              <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Sign Out</a>
+            </div>
+          </div>
+        </nav>
+        <button class="menu-toggle" id="menuToggle">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="product-detail-page">
+    <div class="container">
+      <div class="breadcrumb" id="breadcrumb">
+        <a href="../index.html">Home</a> / <a href="products.html">Products</a> / <span>Loading...</span>
+      </div>
+
+      <div class="product-detail" id="productDetail">
+        <div class="loading">Loading product...</div>
+      </div>
+
+      <section class="related-products">
+        <h2>Similar Products</h2>
+        <div class="product-grid" id="relatedProducts">
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>Wonderful Auto & Tech</h4>
+          <p>Your trusted source for laptops, gadgets, and accessories in Nigeria.</p>
+        </div>
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <a href="products.html">All Products</a>
+          <a href="cart.html">Shopping Cart</a>
+          <a href="account.html">My Account</a>
+        </div>
+        <div class="footer-section">
+          <h4>Contact</h4>
+          <p><i class="fas fa-phone"></i> +234 XXX XXX XXXX</p>
+          <p><i class="fas fa-envelope"></i> info@wonderfulautotech.com</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Wonderful Auto & Tech. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/config.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/products.js"></script>
+  <script src="../js/cart.js"></script>
+  <script src="../js/app.js"></script>
+</body>
+</html>
