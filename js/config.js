@@ -5,30 +5,24 @@ const OPAY_MERCHANT_ID = '256626030359533';
 const OPAY_PUBLIC_KEY = 'OPAYPUB17725454795800.07492404697304189';
 const OPAY_MODE = 'test';
 
-let supabase;
-let supabaseReady = false;
+window.supabase = null;
 
 function initSupabase() {
   return new Promise((resolve) => {
-    const { createClient } = window.supabaseJs;
-    supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-    window.supabase = supabase;
-    supabaseReady = true;
-    resolve(supabase);
+    function check() {
+      if (window.supabaseJs) {
+        const { createClient } = window.supabaseJs;
+        window.supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        resolve(window.supabase);
+      } else {
+        setTimeout(check, 50);
+      }
+    }
+    check();
   });
 }
 
-function waitForSupabase() {
-  return new Promise((resolve) => {
-    if (supabaseReady) {
-      resolve(supabase);
-    } else {
-      const checkInterval = setInterval(() => {
-        if (supabaseReady) {
-          clearInterval(checkInterval);
-          resolve(supabase);
-        }
-      }, 100);
-    }
-  });
+async function waitForSupabase() {
+  if (window.supabase) return window.supabase;
+  return initSupabase();
 }
