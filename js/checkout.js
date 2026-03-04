@@ -1,15 +1,16 @@
 const EDGE_FUNCTION_URL = 'https://hgjaqurtcqkratbkqrgp.supabase.co/functions/v1/create-payment';
 
 async function initCheckout() {
+  await waitForSupabase();
   const { data: { session } } = await supabase.auth.getSession();
   
   if (!session) {
-    window.location.href = 'login.html?redirect=checkout.html';
+    window.location.href = 'pages/login.html?redirect=pages/checkout.html';
     return;
   }
 
   if (cart.length === 0) {
-    window.location.href = 'products.html';
+    window.location.href = 'pages/products.html';
     return;
   }
 
@@ -34,6 +35,7 @@ async function initCheckout() {
 }
 
 async function getUserProfile(userId) {
+  await waitForSupabase();
   const { data } = await supabase
     .from('profiles')
     .select('*')

@@ -6,9 +6,29 @@ const OPAY_PUBLIC_KEY = 'OPAYPUB17725454795800.07492404697304189';
 const OPAY_MODE = 'test';
 
 let supabase;
+let supabaseReady = false;
 
-document.addEventListener('DOMContentLoaded', () => {
-  const { createClient } = window.supabaseJs;
-  supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-  window.supabase = supabase;
-});
+function initSupabase() {
+  return new Promise((resolve) => {
+    const { createClient } = window.supabaseJs;
+    supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    window.supabase = supabase;
+    supabaseReady = true;
+    resolve(supabase);
+  });
+}
+
+function waitForSupabase() {
+  return new Promise((resolve) => {
+    if (supabaseReady) {
+      resolve(supabase);
+    } else {
+      const checkInterval = setInterval(() => {
+        if (supabaseReady) {
+          clearInterval(checkInterval);
+          resolve(supabase);
+        }
+      }, 100);
+    }
+  });
+}

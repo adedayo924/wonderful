@@ -2,6 +2,7 @@ let currentUser = null;
 let userProfile = null;
 
 async function initAuth() {
+  await waitForSupabase();
   const { data: { session } } = await supabase.auth.getSession();
   
   if (session) {
@@ -153,7 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
     adminLink.addEventListener('click', (e) => {
       e.preventDefault();
       if (userProfile?.is_admin) {
-        window.location.href = 'admin.html';
+        window.location.href = 'pages/admin.html';
       } else {
         alert('Access denied. Admin only.');
       }

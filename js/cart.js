@@ -1,6 +1,7 @@
 let cart = [];
 
 async function loadCart() {
+  await waitForSupabase();
   const { data: { session } } = await supabase.auth.getSession();
   
   if (!session) {

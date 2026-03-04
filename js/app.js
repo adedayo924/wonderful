@@ -1,8 +1,6 @@
 document.addEventListener('DOMContentLoaded', async () => {
-  const { createClient } = window.supabaseJs;
-  supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-  window.supabase = supabase;
-
+  await initSupabase();
+  
   await initAuth();
   await loadCart();
   initMobileMenu();
@@ -97,7 +95,7 @@ async function initProductDetailPage() {
   const productId = params.get('id');
 
   if (!productId) {
-    window.location.href = 'products.html';
+    window.location.href = 'pages/products.html';
     return;
   }
 
@@ -223,7 +221,7 @@ function initRegisterPage() {
     try {
       await register(email, password, fullName);
       alert('Account created successfully! Please check your email to verify your account.');
-      window.location.href = 'login.html';
+      window.location.href = 'pages/login.html';
     } catch (error) {
       errorMsg.textContent = error.message;
       errorMsg.style.display = 'block';
@@ -237,7 +235,7 @@ function initRegisterPage() {
 async function initAccountPage() {
   const { data: { session } } = await supabase.auth.getSession();
   if (!session) {
-    window.location.href = 'login.html?redirect=account.html';
+    window.location.href = 'pages/login.html?redirect=pages/account.html';
     return;
   }
 
@@ -302,7 +300,7 @@ async function initAccountPage() {
 async function initOrdersPage() {
   const { data: { session } } = await supabase.auth.getSession();
   if (!session) {
-    window.location.href = 'login.html?redirect=orders.html';
+    window.location.href = 'pages/login.html?redirect=pages/orders.html';
     return;
   }
 
@@ -352,7 +350,7 @@ async function initOrdersPage() {
 
 async function initAdminPage() {
   if (!userProfile?.is_admin) {
-    window.location.href = '../index.html';
+    window.location.href = 'index.html';
     return;
   }
 

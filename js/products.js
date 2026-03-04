@@ -1,4 +1,5 @@
 async function loadProducts(options = {}) {
+  await waitForSupabase();
   const { category, sort = 'created_at-desc', limit = 50, featured = false } = options;
   
   let query = supabase
@@ -31,6 +32,7 @@ async function loadProducts(options = {}) {
 }
 
 async function loadProduct(id) {
+  await waitForSupabase();
   const { data, error } = await supabase
     .from('products')
     .select('*')
@@ -46,6 +48,7 @@ async function loadProduct(id) {
 }
 
 async function loadRelatedProducts(productId, category, limit = 4) {
+  await waitForSupabase();
   const { data, error } = await supabase
     .from('products')
     .select('*')
@@ -62,6 +65,7 @@ async function loadRelatedProducts(productId, category, limit = 4) {
 }
 
 async function searchProducts(searchTerm) {
+  await waitForSupabase();
   const { data, error } = await supabase
     .from('products')
     .select('*')
