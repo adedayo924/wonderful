@@ -5,15 +5,16 @@ const OPAY_MERCHANT_ID = '256626030359533';
 const OPAY_PUBLIC_KEY = 'OPAYPUB17725454795800.07492404697304189';
 const OPAY_MODE = 'test';
 
-window.supabase = null;
+var supabase = null;
 
 function initSupabase() {
   return new Promise((resolve) => {
     function check() {
       if (window.supabaseJs) {
         const { createClient } = window.supabaseJs;
-        window.supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-        resolve(window.supabase);
+        supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        window.supabase = supabase;
+        resolve(supabase);
       } else {
         setTimeout(check, 50);
       }
@@ -23,6 +24,6 @@ function initSupabase() {
 }
 
 async function waitForSupabase() {
-  if (window.supabase) return window.supabase;
+  if (supabase) return supabase;
   return initSupabase();
 }

@@ -56,8 +56,19 @@ function initMobileMenu() {
 }
 
 async function loadFeaturedProducts() {
-  const products = await loadProducts({ featured: true, limit: 8 });
-  renderProductGrid(products, 'featuredProducts');
+  try {
+    let products = await loadProducts({ featured: true, limit: 8 });
+    if (!products || products.length === 0) {
+      products = await loadProducts({ limit: 8 });
+    }
+    renderProductGrid(products, 'featuredProducts');
+  } catch (err) {
+    console.error('Error loading products:', err);
+    const container = document.getElementById('featuredProducts');
+    if (container) {
+      container.innerHTML = '<div class="loading">Unable to load products. Please try again later.</div>';
+    }
+  }
 }
 
 function initProductsPage() {

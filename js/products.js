@@ -24,10 +24,11 @@ async function loadProducts(options = {}) {
   const { data, error } = await query;
 
   if (error) {
-    console.error('Error loading products:', error);
+    console.error('Error loading products:', error.message, error.details);
     return [];
   }
 
+  console.log('Products loaded:', data?.length || 0);
   return data || [];
 }
 
