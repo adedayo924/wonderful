@@ -7,15 +7,21 @@ const OPAY_MODE = 'test';
 
 var supabase = null;
 
+console.log('Config.js loaded');
+
 function initSupabase() {
+  console.log('Initializing Supabase...');
   return new Promise((resolve) => {
     function check() {
       if (window.supabaseJs) {
+        console.log('Supabase JS library found, creating client...');
         const { createClient } = window.supabaseJs;
         supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
         window.supabase = supabase;
+        console.log('Supabase client created successfully');
         resolve(supabase);
       } else {
+        console.log('Waiting for Supabase JS library...');
         setTimeout(check, 50);
       }
     }
@@ -24,6 +30,11 @@ function initSupabase() {
 }
 
 async function waitForSupabase() {
-  if (supabase) return supabase;
+  console.log('waitForSupabase called');
+  if (supabase) {
+    console.log('Supabase already initialized');
+    return supabase;
+  }
+  console.log('Calling initSupabase...');
   return initSupabase();
 }
